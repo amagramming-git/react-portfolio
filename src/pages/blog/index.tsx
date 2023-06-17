@@ -36,7 +36,10 @@ const StyledButton = styled.button`
     background-color: black;
   }
 `;
-
+const StyledSubButton = styled(StyledButton)`
+  color: ${(props: React.ButtonHTMLAttributes<HTMLButtonElement>) => props.disabled ? 'red' : 'blue'};
+  background-color: ${(props: React.ButtonHTMLAttributes<HTMLButtonElement>) => props.value};
+`;
 
 export default function Home() {
   const router = useRouter();
@@ -49,6 +52,9 @@ export default function Home() {
       <StyledButton onClick={onClickHandler}>
         ボタン
       </StyledButton>
+      <StyledSubButton value="pink">
+        ボタン2
+      </StyledSubButton>
     </>
   )
 }
