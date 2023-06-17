@@ -38,7 +38,11 @@ const StyledButton = styled.button`
 `;
 const StyledSubButton = styled(StyledButton)`
   color: ${(props: React.ButtonHTMLAttributes<HTMLButtonElement>) => props.disabled ? 'red' : 'blue'};
-  background-color: ${(props: React.ButtonHTMLAttributes<HTMLButtonElement>) => props.value};
+  /* background-color: ${(props: React.ButtonHTMLAttributes<HTMLButtonElement>) => {
+    const backgroundColor: string = props.color ? props.color : "pink";
+    return backgroundColor;
+  }}}; */
+  background-color: ${(props: React.ButtonHTMLAttributes<HTMLButtonElement>) => props.color};
 `;
 
 export default function Home() {
@@ -52,7 +56,7 @@ export default function Home() {
       <StyledButton onClick={onClickHandler}>
         ボタン
       </StyledButton>
-      <StyledSubButton value="pink">
+      <StyledSubButton color="red">
         ボタン2
       </StyledSubButton>
     </>
