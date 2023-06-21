@@ -1,6 +1,6 @@
 import { useReducer } from "react"
 
-export default function Hooks() {
+export default function Calc() {
     const calcOptions = ["+", "-", "*", "/"] as const;
     type CalcOptions = typeof calcOptions[number];
     type Value = {
@@ -16,6 +16,7 @@ export default function Hooks() {
             value: any
         }
     }
+    // reducers
     const initDispValues: Value = { valueA: 0, valueB: 0, calcOption: "+", result: 0 }
     const [disp, dispatch] = useReducer((prev: Value, dispatchProp: DispatchProp) => {
         switch (dispatchProp.action) {
@@ -40,12 +41,14 @@ export default function Hooks() {
                 throw new Error('不明なactionです。')
         }
     }, initDispValues);
+    // Actions of elements on the screen
     const onChangeValue: React.ChangeEventHandler<HTMLInputElement> = (e) =>
         dispatch({ action: "changeValue", payload: { name: e.target.name, value: Number(e.target.value) } })
     const onChangeSelected: React.ChangeEventHandler<HTMLSelectElement> = (e) =>
         dispatch({ action: "changeCalcOption", payload: { name: "", value: e.target.value } })
     const calcButtonAction: React.MouseEventHandler<HTMLButtonElement> = (e) =>
         dispatch({ action: "calc", payload: { name: "", value: 0 } })
+    // return jsx
     return (
         <>
             <div>
