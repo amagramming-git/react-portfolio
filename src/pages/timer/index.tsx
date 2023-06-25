@@ -1,14 +1,22 @@
-import { useEffect, useState } from "react"
+import { useEffect, useReducer, useState } from "react"
 
 export default function TodoPage() {
-
-    const [time, setTime] = useState(0);
+    const [time, dispatch] = useReducer((prev: number, action: string) => {
+        switch (action) {
+            case "oneSecPass":
+                return prev + 1;
+            case "reset":
+                return 0;
+            default:
+                throw new Error('不明なactionです。')
+        }
+    }, 0)
     const [checked, setChecked] = useState(false);
 
     //timer
     useEffect(() => {
         const id = window.setInterval(() => {
-            setTime(prev => prev + 1);
+            dispatch("oneSecPass");
         }, 1000);
         return () => window.clearInterval(id);
     }, []);

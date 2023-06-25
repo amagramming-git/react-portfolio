@@ -24,7 +24,7 @@ export default function Calc() {
                 return { ...prev, [dispatchProp.payload.name]: Number(dispatchProp.payload.value) };
             case "changeCalcOption":
                 return { ...prev, calcOption: dispatchProp.payload.value };
-            case "calc":
+            case "calculation":
                 switch (prev.calcOption) {
                     case "+":
                         return { ...prev, result: prev.valueA + prev.valueB };
@@ -47,7 +47,7 @@ export default function Calc() {
     const onChangeSelected: React.ChangeEventHandler<HTMLSelectElement> = (e) =>
         dispatch({ action: "changeCalcOption", payload: { name: "", value: e.target.value } })
     const calcButtonAction: React.MouseEventHandler<HTMLButtonElement> = (e) =>
-        dispatch({ action: "calc", payload: { name: "", value: 0 } })
+        dispatch({ action: "calculation", payload: { name: "", value: 0 } })
     // return jsx
     return (
         <>
